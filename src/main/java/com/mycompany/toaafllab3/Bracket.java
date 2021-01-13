@@ -30,7 +30,7 @@ public class Bracket implements Statement {
     @Override
     public String toPascalString() {
         if(type) return "begin";
-        else return "end";
+        else return "end;";
     }
 
     @Override

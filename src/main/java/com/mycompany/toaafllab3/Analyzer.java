@@ -16,6 +16,18 @@ import java.util.Stack;
 interface AutomatState{
         AutomatState nextState(String x, Stack<Statement> out);
     }
+class Transfer{
+    char[] arg;
+    public Transfer(String x){
+        arg=x.toCharArray();
+    }
+    public void SetArg(String x){
+        arg=x.toCharArray();
+    }
+    public String GetArg(){
+        return String.valueOf(arg);
+    }
+}
 class State{
     private static Statement checkErrorType(String head){
         if(Condition.isCondition(head)) return Condition.ParseCondition(head);
@@ -103,7 +115,7 @@ class State{
                 return State::ManyOperators;
             }
             else{
-                if(head.equals("end")){
+                if(head.equals("end;")){
                     out.push(new Bracket(false));
                     return State::Else;
                 }
@@ -167,7 +179,7 @@ class State{
                 return State::ManyOperatorsElse;
             }
             else{
-                if(head.equals("end")){
+                if(head.equals("end;")){
                     out.push(new Bracket(false));
                     return State::ManyOperatorsElse;
                 }
@@ -270,20 +282,25 @@ public class Analyzer {
     public String Run(ArrayList<String> input){
         Stack<Statement> out=new Stack<>();
         input.add("e");
-        IfThenElse(head(input),tail(input),State::If,out,true);
+        IfThenElse(head(input),tail(input),State::If,out,true,new Transfer(""));
         return translate(out);
     }
-    private void IfThenElse(String head, ArrayList<String> tail, AutomatState state, Stack<Statement> out, boolean add){
+    private void IfThenElse(String head, ArrayList<String> tail, AutomatState state, Stack<Statement> out, boolean add,Transfer back){
         if(head!=null&&state!=null){
             if(out.size()>0&&head.equals("if")&&add){
-                IfThenElse(head, tail,State::If,out,false);
+                IfThenElse(head, tail,State::If,out,false,back);
                 if(out.peek() instanceof Error){
                     out.pop();
                     head=out.pop().toPascalString();
-                   
+                    tail.add(0, back.GetArg());
                 }
             }
-            IfThenElse(head(tail),tail(tail),state.nextState(head, out),out,true);
+            IfThenElse(head(tail),tail(tail),state.nextState(head, out),out,true,back);
+        }
+        else{
+            if(state==null){
+                back.SetArg(head);
+            }
         }
     }
 }
