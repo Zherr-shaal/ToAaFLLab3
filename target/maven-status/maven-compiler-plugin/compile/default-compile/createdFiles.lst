@@ -1,2 +1,15 @@
 com\mycompany\toaafllab3\MainForm.class
 com\mycompany\toaafllab3\MainForm$1.class
+com\mycompany\toaafllab3\Condition.class
+com\mycompany\toaafllab3\Statement.class
+com\mycompany\toaafllab3\Bracket.class
+com\mycompany\toaafllab3\MainForm$2.class
+com\mycompany\toaafllab3\If.class
+com\mycompany\toaafllab3\Assignement.class
+com\mycompany\toaafllab3\AutomatState.class
+com\mycompany\toaafllab3\Error.class
+com\mycompany\toaafllab3\Transfer.class
+com\mycompany\toaafllab3\Then.class
+com\mycompany\toaafllab3\Else.class
+com\mycompany\toaafllab3\Analyzer.class
+com\mycompany\toaafllab3\State.class
