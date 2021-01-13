@@ -280,7 +280,7 @@ public class Analyzer {
                 if(out.peek() instanceof Error){
                     out.pop();
                     head=out.pop().toPascalString();
-                    String hui="huasgsgasgi";
+                   
                 }
             }
             IfThenElse(head(tail),tail(tail),state.nextState(head, out),out,true);
