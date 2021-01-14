@@ -54,7 +54,7 @@ public class MainForm extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("if (a<5) then\n    begin\n    a:=5;\n    if (b>6) then\n        begin\n        b:=10;\n        c:=14;\n        end;\n    end;");
+        jTextArea1.setText("if (a<>5) then\n    begin\n    a:=5;\n    if (b>=6) then\n        begin\n        b:=10;\n        c:=14;\n        end;\n    else\n       begin\n       d:=15;\n       x:=23;\n       end;\n    end;\nelse \n    f:=17;");
         jScrollPane1.setViewportView(jTextArea1);
 
         jTextArea2.setColumns(20);

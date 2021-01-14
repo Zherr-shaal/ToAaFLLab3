@@ -58,8 +58,8 @@ public class Condition implements Statement{
 
     @Override
     public String toString() {
-        if(operator=="=") return '(' + oper1 + " == " + oper2 + ')';
-        if(operator=="<>") return '(' + oper1 + " != " + oper2 + ')';
+        if(operator.equals("=")) return '(' + oper1 + " == " + oper2 + ')';
+        if(operator.equals("<>")) return '(' + oper1 + " != " + oper2 + ')';
         return '(' + oper1 + " " + operator + " " + oper2 + ')';
     }
 
@@ -70,8 +70,8 @@ public class Condition implements Statement{
 
     @Override
     public String toCString() {
-        if(operator=="=") return '(' + oper1 + " == " + oper2 + ')';
-        if(operator=="<>") return '(' + oper1 + " != " + oper2 + ')';
+        if(operator.equals("=")) return '(' + oper1 + " == " + oper2 + ')';
+        if(operator.equals("<>")) return '(' + oper1 + " != " + oper2 + ')';
         return '(' + oper1 + " " + operator + " " + oper2 + ')';
     }
     
