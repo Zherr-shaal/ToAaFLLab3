@@ -279,19 +279,19 @@ public class Analyzer {
         }
         return result;
     }
-    public String Run(ArrayList<String> input){
+    public String Run(ArrayList<String> input){ //Стартовая точка анализа
         Stack<Statement> out=new Stack<>();
-        input.add("e");
-        IfThenElse(head(input),tail(input),State::If,out,true,new Transfer(""));
+        input.add("e"); //Дополняем строку эпсилоном
+        IfThenElse(head(input),tail(input),State::If,out,true,new Transfer("")); //Рекурсивная процедура
         return translate(out);
     }
     private void IfThenElse(String head, ArrayList<String> tail, AutomatState state, Stack<Statement> out, boolean add,Transfer back){
-        if(head!=null&&state!=null){
-            if(out.size()>0&&head.equals("if")&&add){
-                IfThenElse(head, tail,State::If,out,false,back);
-                if(out.peek() instanceof Error){
-                    out.pop();
-                    head=out.pop().toPascalString();
+        if(head!=null&&state!=null){//чекаем остались ли символы и не вышла ли ошибка
+            if(out.size()>0&&head.equals("if")&&add){//проверяем является ли первым найденный if
+                IfThenElse(head, tail,State::If,out,false,back); //делаем дополнительный вызов
+                if(out.peek() instanceof Error){//откат изменений
+                    out.pop();//выкидываем ошибку
+                    head=out.pop().toPascalString();//Возвращаем значение вызвавшее ошибку
                     tail.add(0, back.GetArg());
                 }
             }
